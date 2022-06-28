@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="accountingOfContracts">
+        <createTable tableName="CLIENT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CLIENT"/>
+            </column>
+            <column name="FULL_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHONE_NUMBER" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="ADDRESS" type="VARCHAR(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet id="2" author="accountingOfContracts">
+        <createTable tableName="CONTRACT">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CONTRACT"/>
+            </column>
+            <column name="DATE_OF_CONCLUSION" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TERM_OF_THE_CONTRACT" type="DATE">
+                <constraints nullable="false"/>
+            </column>
+            <column name="AMOUNT_OF_SERVICES" type="DECIMAL(19, 3)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CUSTOMER_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EXECUTOR_ID" type="UUID">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="accountingOfContracts">
+        <createTable tableName="CONTRACTOR">
+            <column name="ID" type="UUID">
+                <constraints nullable="false" primaryKey="true" primaryKeyName="PK_CONTRACTOR"/>
+            </column>
+            <column name="DTYPE" type="VARCHAR(31)"/>
+            <column name="FULL_NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PHONE_NUMBER" type="VARCHAR(35)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="EMAIL" type="VARCHAR(255)"/>
+            <column name="ADDRESS" type="VARCHAR(255)"/>
+            <column name="PROFESSION" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAME" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TIN" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DIRECTOR" type="VARCHAR(255)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="4" author="accountingOfContracts">
+        <createIndex indexName="IDX_CONTRACT_CUSTOMER_ID" tableName="CONTRACT">
+            <column name="CUSTOMER_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="CUSTOMER_ID" baseTableName="CONTRACT"
+                                 constraintName="FK_CONTRACT_ON_CUSTOMER" onDelete="CASCADE" referencedColumnNames="ID"
+                                 referencedTableName="CLIENT"/>
+    </changeSet>
+    <changeSet id="5" author="accountingOfContracts">
+        <createIndex indexName="IDX_CONTRACT_EXECUTOR_ID" tableName="CONTRACT">
+            <column name="EXECUTOR_ID"/>
+        </createIndex>
+
+        <addForeignKeyConstraint baseColumnNames="EXECUTOR_ID" baseTableName="CONTRACT"
+                                 constraintName="FK_CONTRACT_ON_EXECUTOR" onDelete="CASCADE" referencedColumnNames="ID"
+                                 referencedTableName="CONTRACTOR"/>
+    </changeSet>
+</databaseChangeLog>
