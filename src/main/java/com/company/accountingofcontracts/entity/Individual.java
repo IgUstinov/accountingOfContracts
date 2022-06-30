@@ -5,19 +5,21 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 
+@Table(name = "Individual")
 @JmixEntity
 @Entity
 public class Individual extends Contractor {
+    @NotNull
     @InstanceName
     @Column(name = "FULL_NAME", nullable = false)
-    @NotNull
     private String fullName;
 
-    @Column(name = "PHONE_NUMBER", nullable = false, length = 35)
     @NotNull
+    @Column(name = "PHONE_NUMBER", nullable = false, length = 35)
     private String phoneNumber;
 
     @Email
@@ -27,8 +29,8 @@ public class Individual extends Contractor {
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "PROFESSION", nullable = false)
     @NotNull
+    @Column(name = "PROFESSION", nullable = false)
     private String profession;
 
     public String getProfession() {

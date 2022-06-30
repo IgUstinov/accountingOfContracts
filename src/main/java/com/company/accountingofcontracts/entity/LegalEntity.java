@@ -5,25 +5,28 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
+@Table(name = "LegalEntity")
 @JmixEntity
 @Entity
 public class LegalEntity extends Contractor {
+    @NotNull
     @InstanceName
     @Column(name = "NAME", nullable = false)
-    @NotNull
     private String name;
 
-    @Column(name = "TIN", nullable = false)
     @NotNull
+    @Column(name = "TIN", nullable = false)
     private String tin;
 
+    @NotNull
     @Column(name = "ADDRESS")
     private String address;
 
-    @Column(name = "DIRECTOR", nullable = false)
     @NotNull
+    @Column(name = "DIRECTOR", nullable = false)
     private String director;
 
     public String getDirector() {

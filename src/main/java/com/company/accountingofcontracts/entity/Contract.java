@@ -4,7 +4,6 @@ import io.jmix.core.DeletePolicy;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.entity.annotation.OnDeleteInverse;
 import io.jmix.core.metamodel.annotation.Composition;
-import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
@@ -17,10 +16,12 @@ import java.util.UUID;
 @JmixEntity
 @Table(name = "CONTRACT", indexes = {
         @Index(name = "IDX_CONTRACT_CUSTOMER_ID", columnList = "CUSTOMER_ID"),
-        @Index(name = "IDX_CONTRACT_EXECUTOR_ID", columnList = "EXECUTOR_ID")
+        @Index(name = "IDX_CONTRACT", columnList = "EXECUTOR_LEGAL_ENTITY_ID"),
+        @Index(name = "IDX_CONTRACT", columnList = "EXECUTOR_INDIVIDUAL_ID")
 })
 @Entity
 public class Contract {
+    @InstanceName
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -45,19 +46,30 @@ public class Contract {
     @OneToOne(fetch = FetchType.LAZY, optional = false)
     private Client customer;
 
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @JoinColumn(name = "EXECUTOR_ID", nullable = false)
+    @JoinColumn(name = "EXECUTOR_LEGAL_ENTITY_ID")
     @Composition
-    @NotNull
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    private Contractor executor;
+    @OneToOne(fetch = FetchType.LAZY)
+    private LegalEntity executorLegalEntity;
 
-    public Contractor getExecutor() {
-        return executor;
+    @JoinColumn(name = "EXECUTOR_INDIVIDUAL_ID")
+    @Composition
+    @OneToOne(fetch = FetchType.LAZY)
+    private Individual executorIndividual;
+
+    public Individual getExecutorIndividual() {
+        return executorIndividual;
     }
 
-    public void setExecutor(Contractor executor) {
-        this.executor = executor;
+    public void setExecutorIndividual(Individual executorIndividual) {
+        this.executorIndividual = executorIndividual;
+    }
+
+    public LegalEntity getExecutorLegalEntity() {
+        return executorLegalEntity;
+    }
+
+    public void setExecutorLegalEntity(LegalEntity executorLegalEntity) {
+        this.executorLegalEntity = executorLegalEntity;
     }
 
     public Client getCustomer() {
@@ -100,9 +112,4 @@ public class Contract {
         this.id = id;
     }
 
-    @InstanceName
-    @DependsOnProperties({"id", "customer", "executor"})
-    public String getInstanceName() {
-        return String.format("%s %s %s", id, customer, executor);
-    }
 }

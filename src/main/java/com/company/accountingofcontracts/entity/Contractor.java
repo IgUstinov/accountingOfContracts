@@ -4,16 +4,14 @@ import io.jmix.core.entity.annotation.JmixGeneratedValue;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.util.UUID;
 
 @JmixEntity
 @Table(name = "CONTRACTOR")
 @Entity
-public class Contractor {
+@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
+public abstract class Contractor {
     @InstanceName
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
