@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<window xmlns="http://jmix.io/schema/ui/window"
+        caption="msg://contractEdit.caption"
+        focusComponent="form">
+    <data>
+        <instance id="contractDc"
+                  class="com.company.accountingofcontracts.entity.Contract">
+            <fetchPlan extends="_base">
+                <property name="customer" fetchPlan="_base"/>
+                <property name="executorLegalEntity" fetchPlan="_base"/>
+                <property name="executorIndividual" fetchPlan="_base"/>
+            </fetchPlan>
+            <loader/>
+            <instance id="customerDc" property="customer"/>
+            <instance id="executorLegalEntityDc" property="executorLegalEntity"/>
+            <instance id="executorIndividualDc" property="executorIndividual"/>
+        </instance>
+    </data>
+    <facets>
+        <dataLoadCoordinator auto="true"/>
+        <screenSettings id="settingsFacet" auto="true"/>
+    </facets>
+    <actions>
+        <action id="windowCommitAndClose" caption="msg:///actions.Ok"
+                icon="EDITOR_OK"
+                primary="true"
+                shortcut="${COMMIT_SHORTCUT}"/>
+        <action id="windowClose"
+                caption="msg:///actions.Close"
+                icon="EDITOR_CANCEL"/>
+    </actions>
+    <dialogMode height="600"
+                width="800"/>
+    <layout spacing="true" expand="editActions">
+        <form id="form" dataContainer="contractDc">
+            <column width="350px">
+                <dateField id="dateOfConclusionField" property="dateOfConclusion"/>
+                <dateField id="termOfTheContractField" property="termOfTheContract"/>
+                <textField id="amountOfServicesField" property="amountOfServices"/>
+                <entityPicker id="customerField" property="customer">
+                    <actions>
+                        <action id="entityOpenComposition" type="entity_openComposition"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="executorLegalEntityField" property="executorLegalEntity">
+                    <actions>
+                        <action id="entityOpenComposition" type="entity_openComposition"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+                <entityPicker id="executorIndividualField" property="executorIndividual">
+                    <actions>
+                        <action id="entityOpenComposition" type="entity_openComposition"/>
+                        <action id="entityClear" type="entity_clear"/>
+                    </actions>
+                </entityPicker>
+            </column>
+        </form>
+        <hbox id="editActions" spacing="true">
+            <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
+            <button id="closeBtn" action="windowClose"/>
+        </hbox>
+    </layout>
+</window>
