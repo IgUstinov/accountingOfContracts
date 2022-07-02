@@ -4,7 +4,7 @@ import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
-import io.jmix.core.entity.annotation.OnDeleteInverse;
+import io.jmix.core.entity.annotation.OnDelete;
 import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
@@ -18,14 +18,11 @@ import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CONTRACT", indexes = {
-        @Index(name = "IDX_CONTRACT_CUSTOMER_ID", columnList = "CUSTOMER_ID"),
-        @Index(name = "IDX_CONTRACT", columnList = "EXECUTOR_LEGAL_ENTITY_ID"),
-        @Index(name = "IDX_CONTRACT", columnList = "EXECUTOR_INDIVIDUAL_ID")
-})
+@Table(name = "CONTRACT")
 @Entity
 public class Contract {
     @InstanceName
@@ -46,22 +43,17 @@ public class Contract {
     @NotNull
     private BigDecimal amountOfServices;
 
-    @OnDeleteInverse(DeletePolicy.CASCADE)
-    @JoinColumn(name = "CUSTOMER_ID", nullable = false)
-    @Composition
     @NotNull
-    @OneToOne(fetch = FetchType.LAZY, optional = false)
-    private Client customer;
-
-    @JoinColumn(name = "EXECUTOR_LEGAL_ENTITY_ID")
+    @OnDelete(DeletePolicy.CASCADE)
     @Composition
-    @OneToOne(fetch = FetchType.LAZY)
-    private LegalEntity executorLegalEntity;
+    @OneToMany(mappedBy = "contracts")
+    private List<Client> customer;
 
-    @JoinColumn(name = "EXECUTOR_INDIVIDUAL_ID")
+    @NotNull
+    @OnDelete(DeletePolicy.CASCADE)
     @Composition
-    @OneToOne(fetch = FetchType.LAZY)
-    private Individual executorIndividual;
+    @OneToMany(mappedBy = "contract")
+    private List<Contractor> executor;
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -89,6 +81,22 @@ public class Contract {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    public List<Contractor> getExecutor() {
+        return executor;
+    }
+
+    public void setExecutor(List<Contractor> executor) {
+        this.executor = executor;
+    }
+
+    public List<Client> getCustomer() {
+        return customer;
+    }
+
+    public void setCustomer(List<Client> customer) {
+        this.customer = customer;
+    }
 
     public Date getDeletedDate() {
         return deletedDate;
@@ -136,30 +144,6 @@ public class Contract {
 
     public void setCreatedBy(String createdBy) {
         this.createdBy = createdBy;
-    }
-
-    public Individual getExecutorIndividual() {
-        return executorIndividual;
-    }
-
-    public void setExecutorIndividual(Individual executorIndividual) {
-        this.executorIndividual = executorIndividual;
-    }
-
-    public LegalEntity getExecutorLegalEntity() {
-        return executorLegalEntity;
-    }
-
-    public void setExecutorLegalEntity(LegalEntity executorLegalEntity) {
-        this.executorLegalEntity = executorLegalEntity;
-    }
-
-    public Client getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Client customer) {
-        this.customer = customer;
     }
 
     public BigDecimal getAmountOfServices() {

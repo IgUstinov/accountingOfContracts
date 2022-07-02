@@ -45,7 +45,6 @@
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
-                <column id="name"/>
                 <column id="tin"/>
                 <column id="address"/>
                 <column id="director"/>

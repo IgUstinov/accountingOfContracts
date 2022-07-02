@@ -1,5 +1,6 @@
 package com.company.accountingofcontracts.entity;
 
+import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
@@ -13,10 +14,6 @@ import javax.validation.constraints.NotNull;
 @JmixEntity
 @Entity
 public class Individual extends Contractor {
-    @NotNull
-    @InstanceName
-    @Column(name = "FULL_NAME", nullable = false)
-    private String fullName;
 
     @NotNull
     @Column(name = "PHONE_NUMBER", nullable = false, length = 35)
@@ -65,11 +62,9 @@ public class Individual extends Contractor {
         this.phoneNumber = phoneNumber;
     }
 
-    public String getFullName() {
-        return fullName;
-    }
-
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
+    @InstanceName
+    @DependsOnProperties({"name"})
+    public String getInstanceName() {
+        return String.format("%s", getName());
     }
 }

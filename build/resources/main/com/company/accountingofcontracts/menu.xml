@@ -11,6 +11,8 @@
               caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.menu"/>
         <item screen="LegalEntity.browse"
               caption="msg://com.company.accountingofcontracts.screen.legalentity/legalEntityBrowse.menu"/>
+        <item screen="Contractor.browse"
+              caption="msg://com.company.accountingofcontracts.screen.contractor/contractorBrowse.menu"/>
     </menu>
 
 </menu-config>

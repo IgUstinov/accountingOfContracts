@@ -7,9 +7,6 @@
         <collection id="contractsDc"
                     class="com.company.accountingofcontracts.entity.Contract">
             <fetchPlan extends="_base">
-                <property name="customer" fetchPlan="_base"/>
-                <property name="executorLegalEntity" fetchPlan="_base"/>
-                <property name="executorIndividual" fetchPlan="_base"/>
             </fetchPlan>
             <loader id="contractsDl">
                 <query>
@@ -51,9 +48,6 @@
                 <column id="dateOfConclusion"/>
                 <column id="termOfTheContract"/>
                 <column id="amountOfServices"/>
-                <column id="customer"/>
-                <column id="executorLegalEntity"/>
-                <column id="executorIndividual"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

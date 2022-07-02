@@ -5,7 +5,12 @@
     <data>
         <instance id="clientDc"
                   class="com.company.accountingofcontracts.entity.Client">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="contracts" fetchPlan="_base">
+                    <property name="customer" fetchPlan="_base"/>
+                    <property name="executor" fetchPlan="_base"/>
+                </property>
+            </fetchPlan>
             <loader/>
         </instance>
     </data>
@@ -24,15 +29,23 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="clientDc">
-            <column width="350px">
-                <textField id="fullNameField" property="fullName"/>
-                <textField id="phoneNumberField" property="phoneNumber"/>
-                <textField id="emailField" property="email"/>
-                <textField id="addressField" property="address"/>
-            </column>
-        </form>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="clientDc">
+                <column width="350px">
+                    <textField id="fullNameField" property="fullName"/>
+                    <textField id="phoneNumberField" property="phoneNumber"/>
+                    <textField id="emailField" property="email"/>
+                    <textField id="addressField" property="address"/>
+                    <entityPicker id="contractsField" property="contracts">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                </column>
+            </form>
+        </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

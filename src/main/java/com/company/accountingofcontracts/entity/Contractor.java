@@ -15,15 +15,20 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CONTRACTOR")
+@Table(name = "CONTRACTOR", indexes = {
+        @Index(name = "IDX_CONTRACTOR_CONTRACT_ID", columnList = "")
+})
 @Entity
-@Inheritance(strategy = InheritanceType.TABLE_PER_CLASS)
-public abstract class Contractor {
-    @InstanceName
+@Inheritance(strategy = InheritanceType.JOINED)
+public class Contractor {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
     private UUID id;
+
+    @InstanceName
+    @Column(name = "NAME")
+    private String name;
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -51,6 +56,26 @@ public abstract class Contractor {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    @JoinColumn(name = "CONTRACT_ID")
+    @ManyToOne(fetch = FetchType.LAZY)
+    private Contract contract;
+
+    public void setContract(Contract contract) {
+        this.contract = contract;
+    }
+
+    public Contract getContract() {
+        return contract;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 
     public Date getDeletedDate() {
         return deletedDate;

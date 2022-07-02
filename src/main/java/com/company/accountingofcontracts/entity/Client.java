@@ -17,7 +17,9 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CLIENT")
+@Table(name = "CLIENT", indexes = {
+        @Index(name = "IDX_CLIENT_CONTRACTS_ID", columnList = "CONTRACTS_ID")
+})
 @Entity
 public class Client {
     @JmixGeneratedValue
@@ -67,6 +69,18 @@ public class Client {
     @Column(name = "DELETED_DATE")
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
+
+    @JoinColumn(name = "CONTRACTS_ID", nullable = true)
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    private Contract contracts;
+
+    public Contract getContracts() {
+        return contracts;
+    }
+
+    public void setContracts(Contract contracts) {
+        this.contracts = contracts;
+    }
 
     public Date getDeletedDate() {
         return deletedDate;

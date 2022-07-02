@@ -7,13 +7,11 @@
                   class="com.company.accountingofcontracts.entity.Contract">
             <fetchPlan extends="_base">
                 <property name="customer" fetchPlan="_base"/>
-                <property name="executorLegalEntity" fetchPlan="_base"/>
-                <property name="executorIndividual" fetchPlan="_base"/>
+                <property name="executor" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
-            <instance id="customerDc" property="customer"/>
-            <instance id="executorLegalEntityDc" property="executorLegalEntity"/>
-            <instance id="executorIndividualDc" property="executorIndividual"/>
+            <collection id="customerDc" property="customer"/>
+            <collection id="executorDc" property="executor"/>
         </instance>
     </data>
     <facets>
@@ -31,32 +29,53 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="contractDc">
-            <column width="350px">
-                <dateField id="dateOfConclusionField" property="dateOfConclusion"/>
-                <dateField id="termOfTheContractField" property="termOfTheContract"/>
-                <textField id="amountOfServicesField" property="amountOfServices"/>
-                <entityPicker id="customerField" property="customer">
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="contractDc">
+                <column width="350px">
+                    <dateField id="dateOfConclusionField" property="dateOfConclusion"/>
+                    <dateField id="termOfTheContractField" property="termOfTheContract"/>
+                    <textField id="amountOfServicesField" property="amountOfServices"/>
+                </column>
+            </form>
+            <groupBox id="customerBox" caption="msg://com.company.accountingofcontracts.entity/Contract.customer">
+                <table id="customerTable" dataContainer="customerDc" width="100%" height="200px">
                     <actions>
-                        <action id="entityOpenComposition" type="entity_openComposition"/>
-                        <action id="entityClear" type="entity_clear"/>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
                     </actions>
-                </entityPicker>
-                <entityPicker id="executorLegalEntityField" property="executorLegalEntity">
+                    <columns>
+                        <column id="fullName"/>
+                        <column id="phoneNumber"/>
+                        <column id="email"/>
+                        <column id="address"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="customerTable.create"/>
+                        <button action="customerTable.edit"/>
+                        <button action="customerTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+            <groupBox id="executorBox" caption="msg://com.company.accountingofcontracts.entity/Contract.executor">
+                <table id="executorTable" dataContainer="executorDc" width="100%" height="200px">
                     <actions>
-                        <action id="entityOpenComposition" type="entity_openComposition"/>
-                        <action id="entityClear" type="entity_clear"/>
+                        <action id="create" type="create"/>
+                        <action id="edit" type="edit"/>
+                        <action id="remove" type="remove"/>
                     </actions>
-                </entityPicker>
-                <entityPicker id="executorIndividualField" property="executorIndividual">
-                    <actions>
-                        <action id="entityOpenComposition" type="entity_openComposition"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
-            </column>
-        </form>
+                    <columns>
+                        <column id="name"/>
+                    </columns>
+                    <buttonsPanel>
+                        <button action="executorTable.create"/>
+                        <button action="executorTable.edit"/>
+                        <button action="executorTable.remove"/>
+                    </buttonsPanel>
+                </table>
+            </groupBox>
+        </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>
