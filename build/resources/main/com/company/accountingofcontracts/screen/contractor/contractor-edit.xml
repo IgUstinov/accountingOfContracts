@@ -5,12 +5,7 @@
     <data>
         <instance id="contractorDc"
                   class="com.company.accountingofcontracts.entity.Contractor">
-            <fetchPlan extends="_base">
-                <property name="contract" fetchPlan="_base">
-                    <property name="customer" fetchPlan="_base"/>
-                    <property name="executor" fetchPlan="_base"/>
-                </property>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader/>
         </instance>
     </data>
@@ -33,12 +28,6 @@
         <form id="form" dataContainer="contractorDc">
             <column width="350px">
                 <textField id="nameField" property="name"/>
-                <entityPicker id="contractField" property="contract">
-                    <actions>
-                        <action id="entityLookup" type="entity_lookup"/>
-                        <action id="entityClear" type="entity_clear"/>
-                    </actions>
-                </entityPicker>
             </column>
         </form>
         <hbox id="editActions" spacing="true">

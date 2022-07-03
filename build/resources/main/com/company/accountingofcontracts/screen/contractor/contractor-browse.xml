@@ -9,7 +9,6 @@
             <fetchPlan extends="_base">
                 <property name="contract" fetchPlan="_base">
                     <property name="customer" fetchPlan="_base"/>
-                    <property name="executor" fetchPlan="_base"/>
                 </property>
             </fetchPlan>
             <loader id="contractorsDl">
@@ -50,7 +49,6 @@
             </actions>
             <columns>
                 <column id="name"/>
-                <column id="contract"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"

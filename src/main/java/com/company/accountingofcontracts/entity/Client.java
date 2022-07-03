@@ -1,8 +1,11 @@
 package com.company.accountingofcontracts.entity;
 
+import io.jmix.core.DeletePolicy;
 import io.jmix.core.annotation.DeletedBy;
 import io.jmix.core.annotation.DeletedDate;
 import io.jmix.core.entity.annotation.JmixGeneratedValue;
+import io.jmix.core.entity.annotation.OnDelete;
+import io.jmix.core.metamodel.annotation.Composition;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 import org.springframework.data.annotation.CreatedBy;
@@ -14,12 +17,11 @@ import javax.persistence.*;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CLIENT", indexes = {
-        @Index(name = "IDX_CLIENT_CONTRACTS_ID", columnList = "CONTRACTS_ID")
-})
+@Table(name = "CLIENT")
 @Entity
 public class Client {
     @JmixGeneratedValue
@@ -70,16 +72,17 @@ public class Client {
     @Temporal(TemporalType.TIMESTAMP)
     private Date deletedDate;
 
-    @JoinColumn(name = "CONTRACTS_ID", nullable = true)
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    private Contract contracts;
+    @OnDelete(DeletePolicy.CASCADE)
+    @Composition
+    @OneToMany(mappedBy = "customer")
+    private List<Contract> contracts;
 
-    public Contract getContracts() {
-        return contracts;
+    public void setContracts(List<Contract> contracts) {
+        this.contracts = contracts;
     }
 
-    public void setContracts(Contract contracts) {
-        this.contracts = contracts;
+    public List<Contract> getContracts() {
+        return contracts;
     }
 
     public Date getDeletedDate() {

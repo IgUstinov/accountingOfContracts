@@ -10,8 +10,6 @@
                 <property name="executor" fetchPlan="_base"/>
             </fetchPlan>
             <loader/>
-            <collection id="customerDc" property="customer"/>
-            <collection id="executorDc" property="executor"/>
         </instance>
     </data>
     <facets>
@@ -36,45 +34,20 @@
                     <dateField id="dateOfConclusionField" property="dateOfConclusion"/>
                     <dateField id="termOfTheContractField" property="termOfTheContract"/>
                     <textField id="amountOfServicesField" property="amountOfServices"/>
+                    <entityPicker id="customerField" property="customer">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
+                    <entityPicker id="executorField" property="executor">
+                        <actions>
+                            <action id="entityLookup" type="entity_lookup"/>
+                            <action id="entityClear" type="entity_clear"/>
+                        </actions>
+                    </entityPicker>
                 </column>
             </form>
-            <groupBox id="customerBox" caption="msg://com.company.accountingofcontracts.entity/Contract.customer">
-                <table id="customerTable" dataContainer="customerDc" width="100%" height="200px">
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                        <column id="fullName"/>
-                        <column id="phoneNumber"/>
-                        <column id="email"/>
-                        <column id="address"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="customerTable.create"/>
-                        <button action="customerTable.edit"/>
-                        <button action="customerTable.remove"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
-            <groupBox id="executorBox" caption="msg://com.company.accountingofcontracts.entity/Contract.executor">
-                <table id="executorTable" dataContainer="executorDc" width="100%" height="200px">
-                    <actions>
-                        <action id="create" type="create"/>
-                        <action id="edit" type="edit"/>
-                        <action id="remove" type="remove"/>
-                    </actions>
-                    <columns>
-                        <column id="name"/>
-                    </columns>
-                    <buttonsPanel>
-                        <button action="executorTable.create"/>
-                        <button action="executorTable.edit"/>
-                        <button action="executorTable.remove"/>
-                    </buttonsPanel>
-                </table>
-            </groupBox>
         </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>

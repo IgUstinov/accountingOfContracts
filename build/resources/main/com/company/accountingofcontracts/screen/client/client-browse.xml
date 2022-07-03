@@ -6,7 +6,11 @@
     <data readOnly="true">
         <collection id="clientsDc"
                     class="com.company.accountingofcontracts.entity.Client">
-            <fetchPlan extends="_base"/>
+            <fetchPlan extends="_base">
+                <property name="contracts" fetchPlan="_base">
+                    <property name="executor" fetchPlan="_base"/>
+                </property>
+            </fetchPlan>
             <loader id="clientsDl">
                 <query>
                     <![CDATA[select e from Client e]]>
@@ -39,7 +43,6 @@
                     width="100%"
                     dataContainer="clientsDc">
             <actions>
-                <action id="add" type="add"/>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
@@ -53,7 +56,6 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="addBtn" action="clientsTable.add"/>
                 <button id="createBtn" action="clientsTable.create"/>
                 <button id="editBtn" action="clientsTable.edit"/>
                 <button id="removeBtn" action="clientsTable.remove"/>
