@@ -15,9 +15,7 @@ import java.util.Date;
 import java.util.UUID;
 
 @JmixEntity
-@Table(name = "CONTRACTOR", indexes = {
-        @Index(name = "IDX_CONTRACTOR_CONTRACT_ID", columnList = "")
-})
+@Table(name = "CONTRACTOR")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
 public class Contractor {
