@@ -3,14 +3,14 @@
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://contractorBrowse.caption"
         focusComponent="contractorsTable">
+    <actions>
+        <action id="openLookupActionInd" caption="Open a lookup screen"/>
+        <action id="openLookupActionLeg" caption="Open a lookup screen"/>
+    </actions>
     <data readOnly="true">
         <collection id="contractorsDc"
                     class="com.company.accountingofcontracts.entity.Contractor">
-            <fetchPlan extends="_base">
-                <property name="contract" fetchPlan="_base">
-                    <property name="customer" fetchPlan="_base"/>
-                </property>
-            </fetchPlan>
+            <fetchPlan extends="_base"/>
             <loader id="contractorsDl">
                 <query>
                     <![CDATA[select e from Contractor e]]>
@@ -21,6 +21,26 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
+        <editorScreen id="editorScreen"
+                      openMode="DIALOG"
+                      editMode="CREATE"
+                      entityClass="com.company.accountingofcontracts.entity.Individual"
+                      screenClass="com.company.accountingofcontracts.screen.individual.IndividualEdit"
+                      onButton="openEditBtnInd"/>
+        <editorScreen id="editorScreen"
+                      openMode="DIALOG"
+                      editMode="CREATE"
+                      entityClass="com.company.accountingofcontracts.entity.LegalEntity"
+                      screenClass="com.company.accountingofcontracts.screen.legalentity.LegalEntityEdit"
+                      onButton="openEditBtnLeg"/>
+        <lookupScreen id="lookupScreen"
+                      openMode="DIALOG"
+                      entityClass="com.company.accountingofcontracts.entity.Individual"
+                      onAction="openLookupActionInd"/>
+        <lookupScreen id="lookupScreen"
+                      openMode="DIALOG"
+                      entityClass="com.company.accountingofcontracts.entity.LegalEntity"
+                      onAction="openLookupActionLeg"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -35,10 +55,6 @@
     <dialogMode height="600"
                 width="800"/>
     <layout expand="contractorsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="contractorsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="contractorsTable"
                     width="100%"
                     dataContainer="contractorsDc">
@@ -49,13 +65,21 @@
             </actions>
             <columns>
                 <column id="name"/>
+                <column id="type"/>
             </columns>
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="createBtn" action="contractorsTable.create"/>
                 <button id="editBtn" action="contractorsTable.edit"/>
                 <button id="removeBtn" action="contractorsTable.remove"/>
+                <button id="openEditBtnInd"
+                        caption="Create Individual"/>
+                <button id="openEditBtnLeg"
+                        caption="Create Legal Entity"/>
+                <button id="openLookupBtnInd"
+                        action="openLookupActionInd"/>
+                <button id="openLookupBtnLeg"
+                        action="openLookupActionLeg"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

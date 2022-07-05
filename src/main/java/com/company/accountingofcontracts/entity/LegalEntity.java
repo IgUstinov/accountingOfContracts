@@ -6,12 +6,14 @@ import io.jmix.core.metamodel.annotation.JmixEntity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "LegalEntity")
 @JmixEntity
 @Entity
+@PrimaryKeyJoinColumn(name = "ID")
 public class LegalEntity extends Contractor {
 
     @NotNull
@@ -25,6 +27,11 @@ public class LegalEntity extends Contractor {
     @NotNull
     @Column(name = "DIRECTOR", nullable = false)
     private String director;
+
+    @Override
+    public void setType(IndOrLegEnt type) {
+        super.setType(IndOrLegEnt.LEGAL_ENTITY);
+    }
 
     public String getDirector() {
         return director;

@@ -24,16 +24,19 @@
     </actions>
     <dialogMode height="600"
                 width="800"/>
-    <layout spacing="true" expand="editActions">
-        <form id="form" dataContainer="individualDc">
-            <column width="350px">
-                <textField id="fullNameField" property="fullName"/>
-                <textField id="phoneNumberField" property="phoneNumber"/>
-                <textField id="emailField" property="email"/>
-                <textField id="addressField" property="address"/>
-                <textField id="professionField" property="profession"/>
-            </column>
-        </form>
+    <layout spacing="true" expand="scrollBox">
+        <scrollBox id="scrollBox" spacing="true">
+            <form id="form" dataContainer="individualDc">
+                <column width="350px">
+                    <textField id="nameField" property="name"/>
+                    <textField id="phoneNumberField" property="phoneNumber"/>
+                    <textField id="emailField" property="email"/>
+                    <textField id="addressField" property="address"/>
+                    <textField id="professionField" property="profession"/>
+                    <comboBox id="typeField" property="type" inputPrompt="Individual"/>
+                </column>
+            </form>
+        </scrollBox>
         <hbox id="editActions" spacing="true">
             <button id="commitAndCloseBtn" action="windowCommitAndClose"/>
             <button id="closeBtn" action="windowClose"/>

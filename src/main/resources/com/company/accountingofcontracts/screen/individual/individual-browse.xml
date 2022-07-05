@@ -39,12 +39,12 @@
                     width="100%"
                     dataContainer="individualsDc">
             <actions>
-                <action id="add" type="add"/>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="name"/>
                 <column id="phoneNumber"/>
                 <column id="email"/>
                 <column id="address"/>
@@ -53,7 +53,6 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="addBtn" action="individualsTable.add"/>
                 <button id="createBtn" action="individualsTable.create"/>
                 <button id="editBtn" action="individualsTable.edit"/>
                 <button id="removeBtn" action="individualsTable.remove"/>

@@ -39,12 +39,12 @@
                     width="100%"
                     dataContainer="legalEntitiesDc">
             <actions>
-                <action id="add" type="add"/>
                 <action id="create" type="create"/>
                 <action id="edit" type="edit"/>
                 <action id="remove" type="remove"/>
             </actions>
             <columns>
+                <column id="name"/>
                 <column id="tin"/>
                 <column id="address"/>
                 <column id="director"/>
@@ -52,7 +52,6 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
-                <button id="addBtn" action="legalEntitiesTable.add"/>
                 <button id="createBtn" action="legalEntitiesTable.create"/>
                 <button id="editBtn" action="legalEntitiesTable.edit"/>
                 <button id="removeBtn" action="legalEntitiesTable.remove"/>

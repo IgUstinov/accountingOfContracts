@@ -14,6 +14,7 @@ import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -28,9 +29,14 @@ public class Contractor {
     @Id
     private UUID id;
 
+    @NotNull
     @InstanceName
     @Column(name = "NAME")
     private String name;
+
+    @NotNull
+    @Column(name = "TYPE_")
+    private String type;
 
     @CreatedBy
     @Column(name = "CREATED_BY")
@@ -63,6 +69,14 @@ public class Contractor {
     @Composition
     @OneToMany(mappedBy = "executor")
     private List<Contract> contract;
+
+    public void setType(IndOrLegEnt type) {
+        this.type = type == null ? null : type.getId();
+    }
+
+    public IndOrLegEnt getType() {
+        return type == null ? null : IndOrLegEnt.fromId(type);
+    }
 
     public void setContract(List<Contract> contract) {
         this.contract = contract;

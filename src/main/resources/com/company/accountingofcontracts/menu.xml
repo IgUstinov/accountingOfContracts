@@ -4,15 +4,11 @@
     <menu id="application" caption="msg://com.company.accountingofcontracts/menu.application" insertBefore="administration">
         <item screen="User.browse" caption="msg://com.company.accountingofcontracts.screen.user/UserBrowse.caption"/>
         <item screen="themeSettingsScreen" caption="msg://io.jmix.ui.app.themesettings/themeSettings.caption"/>
-        <item screen="Individual.browse"
-              caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.menu"/>
-        <item screen="LegalEntity.browse"
-              caption="msg://com.company.accountingofcontracts.screen.legalentity/legalEntityBrowse.menu"/>
         <item screen="Client.browse" caption="msg://com.company.accountingofcontracts.screen.client/clientBrowse.menu"/>
-        <item screen="Contractor.browse"
-              caption="msg://com.company.accountingofcontracts.screen.contractor/contractorBrowse.menu"/>
         <item screen="Contract.browse"
               caption="msg://com.company.accountingofcontracts.screen.contract/contractBrowse.menu"/>
+        <item screen="Contractor.browse"
+              caption="msg://com.company.accountingofcontracts.screen.contractor/contractorBrowse.menu"/>
     </menu>
 
 </menu-config>
