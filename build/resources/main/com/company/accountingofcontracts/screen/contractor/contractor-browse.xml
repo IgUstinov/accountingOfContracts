@@ -3,10 +3,6 @@
         xmlns:c="http://jmix.io/schema/ui/jpql-condition"
         caption="msg://contractorBrowse.caption"
         focusComponent="contractorsTable">
-    <actions>
-        <action id="openLookupActionInd" caption="Open a lookup screen"/>
-        <action id="openLookupActionLeg" caption="Open a lookup screen"/>
-    </actions>
     <data readOnly="true">
         <collection id="contractorsDc"
                     class="com.company.accountingofcontracts.entity.Contractor">
@@ -21,26 +17,6 @@
     <facets>
         <dataLoadCoordinator auto="true"/>
         <screenSettings id="settingsFacet" auto="true"/>
-        <editorScreen id="editorScreen"
-                      openMode="DIALOG"
-                      editMode="CREATE"
-                      entityClass="com.company.accountingofcontracts.entity.Individual"
-                      screenClass="com.company.accountingofcontracts.screen.individual.IndividualEdit"
-                      onButton="openEditBtnInd"/>
-        <editorScreen id="editorScreen"
-                      openMode="DIALOG"
-                      editMode="CREATE"
-                      entityClass="com.company.accountingofcontracts.entity.LegalEntity"
-                      screenClass="com.company.accountingofcontracts.screen.legalentity.LegalEntityEdit"
-                      onButton="openEditBtnLeg"/>
-        <lookupScreen id="lookupScreen"
-                      openMode="DIALOG"
-                      entityClass="com.company.accountingofcontracts.entity.Individual"
-                      onAction="openLookupActionInd"/>
-        <lookupScreen id="lookupScreen"
-                      openMode="DIALOG"
-                      entityClass="com.company.accountingofcontracts.entity.LegalEntity"
-                      onAction="openLookupActionLeg"/>
     </facets>
     <actions>
         <action id="lookupSelectAction"
@@ -70,16 +46,20 @@
             <simplePagination/>
             <buttonsPanel id="buttonsPanel"
                           alwaysVisible="true">
+                <popupButton id="createBtn" icon="FILE_O" caption="msg:///actions.Create" stylename="primary">
+                    <actions>
+                        <action id="createInd" caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.caption"/>
+                        <action id="createLeg" caption="msg://com.company.accountingofcontracts.screen.legalentity/legalEntityBrowse.caption"/>
+                    </actions>
+                </popupButton>
                 <button id="editBtn" action="contractorsTable.edit"/>
                 <button id="removeBtn" action="contractorsTable.remove"/>
-                <button id="openEditBtnInd"
-                        caption="Create Individual"/>
-                <button id="openEditBtnLeg"
-                        caption="Create Legal Entity"/>
-                <button id="openLookupBtnInd"
-                        action="openLookupActionInd"/>
-                <button id="openLookupBtnLeg"
-                        action="openLookupActionLeg"/>
+                <popupButton id="checkBtn" icon="CHECK" caption="msg:///actions.View" stylename="primary">
+                    <actions>
+                        <action id="checkInd" caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.caption"/>
+                        <action id="checkLeg" caption="msg://com.company.accountingofcontracts.screen.legalentity/legalEntityBrowse.caption"/>
+                    </actions>
+                </popupButton>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

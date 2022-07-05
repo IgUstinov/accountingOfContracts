@@ -35,7 +35,7 @@
         <action id="lookupCancelAction"
                 caption="msg:///actions.Cancel"
                 icon="LOOKUP_CANCEL"/>
-        <action id="openLookupAction" caption="Contracts"/>
+        <action id="openLookupAction" caption="msg://com.company.accountingofcontracts.screen.contract/contractBrowse.caption"/>
     </actions>
     <dialogMode height="600"
                 width="800"/>

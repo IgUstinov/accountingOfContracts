@@ -23,7 +23,7 @@ import java.util.UUID;
 @Table(name = "CONTRACTOR")
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-public class Contractor {
+public abstract class Contractor {
     @JmixGeneratedValue
     @Column(name = "ID", nullable = false)
     @Id
@@ -34,7 +34,6 @@ public class Contractor {
     @Column(name = "NAME")
     private String name;
 
-    @NotNull
     @Column(name = "TYPE_")
     private String type;
 
@@ -70,13 +69,7 @@ public class Contractor {
     @OneToMany(mappedBy = "executor")
     private List<Contract> contract;
 
-    public void setType(IndOrLegEnt type) {
-        this.type = type == null ? null : type.getId();
-    }
-
-    public IndOrLegEnt getType() {
-        return type == null ? null : IndOrLegEnt.fromId(type);
-    }
+    public abstract IndOrLegEnt getType();
 
     public void setContract(List<Contract> contract) {
         this.contract = contract;

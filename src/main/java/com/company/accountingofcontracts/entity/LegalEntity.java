@@ -29,8 +29,8 @@ public class LegalEntity extends Contractor {
     private String director;
 
     @Override
-    public void setType(IndOrLegEnt type) {
-        super.setType(IndOrLegEnt.LEGAL_ENTITY);
+    public IndOrLegEnt getType() {
+        return IndOrLegEnt.LEGAL_ENTITY;
     }
 
     public String getDirector() {

@@ -33,8 +33,8 @@ public class Individual extends Contractor {
     private String profession;
 
     @Override
-    public void setType(IndOrLegEnt type) {
-        super.setType(IndOrLegEnt.INDIVIDUAL);
+    public IndOrLegEnt getType() {
+        return IndOrLegEnt.INDIVIDUAL;
     }
 
     public String getProfession() {

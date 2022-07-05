@@ -33,7 +33,6 @@
                     <textField id="emailField" property="email"/>
                     <textField id="addressField" property="address"/>
                     <textField id="professionField" property="profession"/>
-                    <comboBox id="typeField" property="type" inputPrompt="Individual"/>
                 </column>
             </form>
         </scrollBox>

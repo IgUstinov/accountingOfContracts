@@ -32,7 +32,6 @@
                     <textField id="tinField" property="tin"/>
                     <textField id="addressField" property="address"/>
                     <textField id="directorField" property="director"/>
-                    <comboBox id="typeField" property="type" inputPrompt="Legal Entity"/>
                 </column>
             </form>
         </scrollBox>
