@@ -66,6 +66,11 @@
                 <button id="removeBtn" action="clientsTable.remove"/>
                 <button id="openLookupBtn"
                         action="openLookupAction"/>
+                <popupButton id="checkBtn" icon="FILE_O" caption="msg:///actions.Create" stylename="primary">
+                    <actions>
+                        <action id="createInd" caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.caption"/>
+                    </actions>
+                </popupButton>
             </buttonsPanel>
         </groupTable>
 
