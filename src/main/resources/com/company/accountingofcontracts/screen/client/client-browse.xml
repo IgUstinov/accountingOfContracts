@@ -36,14 +36,11 @@
                 caption="msg:///actions.Cancel"
                 icon="LOOKUP_CANCEL"/>
         <action id="openLookupAction" caption="msg://com.company.accountingofcontracts.screen.contract/contractBrowse.caption"/>
+        <action id="showContracts" caption="msg://com.company.accountingofcontracts.screen.contract/showContractBrowse.caption"/>
     </actions>
     <dialogMode height="600"
                 width="800"/>
     <layout expand="clientsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="clientsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="clientsTable"
                     width="100%"
                     dataContainer="clientsDc">
@@ -64,13 +61,8 @@
                 <button id="createBtn" action="clientsTable.create"/>
                 <button id="editBtn" action="clientsTable.edit"/>
                 <button id="removeBtn" action="clientsTable.remove"/>
-                <button id="openLookupBtn"
-                        action="openLookupAction"/>
-                <popupButton id="checkBtn" icon="FILE_O" caption="msg:///actions.Create" stylename="primary">
-                    <actions>
-                        <action id="createInd" caption="msg://com.company.accountingofcontracts.screen.individual/individualBrowse.caption"/>
-                    </actions>
-                </popupButton>
+                <button id="checkBtn"
+                        action="showContracts"/>
             </buttonsPanel>
         </groupTable>
 

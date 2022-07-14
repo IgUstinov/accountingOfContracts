@@ -29,12 +29,8 @@
                 icon="LOOKUP_CANCEL"/>
     </actions>
     <dialogMode height="600"
-                width="800"/>
+                width="1000"/>
     <layout expand="individualsTable" spacing="true">
-        <filter id="filter"
-                dataLoader="individualsDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="individualsTable"
                     width="100%"
                     dataContainer="individualsDc">

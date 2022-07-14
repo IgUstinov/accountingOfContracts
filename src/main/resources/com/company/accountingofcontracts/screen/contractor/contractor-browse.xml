@@ -27,6 +27,7 @@
         <action id="lookupCancelAction"
                 caption="msg:///actions.Cancel"
                 icon="LOOKUP_CANCEL"/>
+        <action id="showContracts" caption="msg://com.company.accountingofcontracts.screen.contract/showContractorsBrowse.caption"/>
     </actions>
     <dialogMode height="600"
                 width="800"/>
@@ -60,6 +61,8 @@
                         <action id="checkLeg" caption="msg://com.company.accountingofcontracts.screen.legalentity/legalEntityBrowse.caption"/>
                     </actions>
                 </popupButton>
+                <button id="check"
+                        action="showContracts"/>
             </buttonsPanel>
         </groupTable>
         <hbox id="lookupActions" spacing="true" visible="false">

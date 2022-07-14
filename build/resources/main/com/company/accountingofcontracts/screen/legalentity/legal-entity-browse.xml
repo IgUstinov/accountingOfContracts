@@ -29,12 +29,8 @@
                 icon="LOOKUP_CANCEL"/>
     </actions>
     <dialogMode height="600"
-                width="800"/>
+                width="1000"/>
     <layout expand="legalEntitiesTable" spacing="true">
-        <filter id="filter"
-                dataLoader="legalEntitiesDl">
-            <properties include=".*"/>
-        </filter>
         <groupTable id="legalEntitiesTable"
                     width="100%"
                     dataContainer="legalEntitiesDc">

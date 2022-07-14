@@ -3,6 +3,7 @@ package com.company.accountingofcontracts.screen.contractor;
 import com.company.accountingofcontracts.entity.Contract;
 import com.company.accountingofcontracts.entity.Individual;
 import com.company.accountingofcontracts.entity.LegalEntity;
+import com.company.accountingofcontracts.screen.contract.ShowContractorsBrowse;
 import io.jmix.ui.ScreenBuilders;
 import io.jmix.ui.action.Action;
 import io.jmix.ui.component.GroupTable;
@@ -94,5 +95,15 @@ public class ContractorBrowse extends StandardLookup<Contractor> {
                  */
                 .build();
         check.show();
+    }
+    @Subscribe("showContracts")
+    public void onCheckBtnCheck(Action.ActionPerformedEvent event) {
+        Contractor selectedContractor = contractorsTable.getSingleSelected();
+        ShowContractorsBrowse contracts = screenBuilders.screen(this)
+                .withScreenClass(ShowContractorsBrowse.class)
+                .withOpenMode(OpenMode.DIALOG)
+                .build();
+        contracts.setSelectedContractor(selectedContractor);
+        contracts.show();
     }
 }
