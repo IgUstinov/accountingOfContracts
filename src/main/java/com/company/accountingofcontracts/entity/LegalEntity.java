@@ -4,16 +4,14 @@ import io.jmix.core.metamodel.annotation.DependsOnProperties;
 import io.jmix.core.metamodel.annotation.InstanceName;
 import io.jmix.core.metamodel.annotation.JmixEntity;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Table;
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 
 @Table(name = "LegalEntity")
 @JmixEntity
 @Entity
 @PrimaryKeyJoinColumn(name = "ID")
+@DiscriminatorValue("LegalEntity")
 public class LegalEntity extends Contractor {
 
     @NotNull

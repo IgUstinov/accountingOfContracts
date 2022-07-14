@@ -20,4 +20,7 @@
             </column>
         </addColumn>
     </changeSet>
+    <changeSet id="3" author="accountingOfContracts">
+        <dropColumn columnName="DTYPE" tableName="CONTRACTOR"/>
+    </changeSet>
 </databaseChangeLog>

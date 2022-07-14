@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+                      http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.5.xsd"
+        objectQuotingStrategy="QUOTE_ONLY_RESERVED_WORDS">
+    <changeSet id="1" author="accountingOfContracts">
+        <addColumn tableName="CONTRACTOR">
+            <column name="DTYPE" type="VARCHAR(31)"/>
+        </addColumn>
+        <update tableName="CONTRACTOR">
+            <column name="DTYPE" value="Contractor"/>
+            <where>DTYPE is null</where>
+        </update>
+    </changeSet>
+    <changeSet id="2" author="accountingOfContracts">
+        <loadData tableName="CLIENT" file="com/company/accountingofcontracts/liquibase/changelog/2022/data/client.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="FULL_NAME" type="varchar(255)"/>
+            <column name="PHONE_NUMBER" type="varchar(35)"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="3" author="accountingOfContracts">
+        <loadData tableName="CONTRACTOR" file="com/company/accountingofcontracts/liquibase/changelog/2022/data/contractor.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="NAME" type="varchar(255)"/>
+            <column name="TYPE_" type="varchar(255)"/>
+            <column name="DTYPE" type="varchar(31)"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="4" author="accountingOfContracts">
+        <loadData tableName="INDIVIDUAL" file="com/company/accountingofcontracts/liquibase/changelog/2022/data/individual.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="PHONE_NUMBER" type="varchar(35)"/>
+            <column name="PROFESSION" type="varchar(255)"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="5" author="accountingOfContracts">
+        <loadData tableName="LEGALENTITY" file="com/company/accountingofcontracts/liquibase/changelog/2022/data/legalentity.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="TIN" type="varchar(255)"/>
+            <column name="ADDRESS" type="varchar(255)"/>
+            <column name="DIRECTOR" type="varchar(255)"/>
+        </loadData>
+    </changeSet>
+    <changeSet id="6" author="accountingOfContracts">
+        <loadData tableName="CONTRACT" file="com/company/accountingofcontracts/liquibase/changelog/2022/data/contract.csv" separator=";">
+            <column name="ID" type="UUID"/>
+            <column name="AMOUNT_OF_SERVICES" type="NUMERIC (19,3)"/>
+            <column name="DATE_OF_CONCLUSION" type="LOCALDATE"/>
+            <column name="TERM_OF_THE_CONTRACT" type="LOCALDATE"/>
+            <column name="CUSTOMER_ID" type="UUID"/>
+            <column name="EXECUTOR_ID" type="UUID"/>
+        </loadData>
+    </changeSet>
+</databaseChangeLog>
