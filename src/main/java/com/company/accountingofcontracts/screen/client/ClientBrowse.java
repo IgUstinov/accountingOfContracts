@@ -15,6 +15,7 @@ import io.jmix.ui.model.CollectionContainer;
 import io.jmix.ui.model.CollectionLoader;
 import io.jmix.ui.model.DataComponents;
 import io.jmix.ui.screen.*;
+import org.apache.commons.compress.archivers.zip.ZipArchiveEntry;
 import org.springframework.beans.factory.annotation.Autowired;
 
 @UiController("Client.browse")
